@@ -3,6 +3,8 @@ import { TextField, Button } from "@mui/material";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import BASE_URL from "../assets/index";
+
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -20,12 +22,9 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/v1/user/login",
-        {
-          ...formData,
-        }
-      );
+      const response = await axios.post(`${BASE_URL}/api/v1/user/login`, {
+        ...formData,
+      });
 
       if (response.statusText === "OK") {
         const data = await response.data.body;

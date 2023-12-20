@@ -3,6 +3,7 @@ import { TextField, Button } from "@mui/material";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import BASE_URL from "../assets/index";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -22,12 +23,9 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/v1/user/signup",
-        {
-          ...formData,
-        }
-      );
+      const response = await axios.post(`${BASE_URL}/api/v1/user/signup`, {
+        ...formData,
+      });
       if (response.statusText === "Created") {
         const data = await response.data;
 

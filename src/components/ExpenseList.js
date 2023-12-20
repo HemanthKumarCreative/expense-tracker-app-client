@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import DeleteButton from "../ui/Delete";
 import axios from "axios";
+import BASE_URL from "../assets/index";
 
 const ExpenseList = ({
   expenses,
@@ -23,7 +24,7 @@ const ExpenseList = ({
   const getTotalExpense = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/v1/user/${userInfo.id}`
+        `${BASE_URL}/api/v1/user/${userInfo.id}`
       );
       const totalExpense = await response.data.body.totalExpenses;
       return totalExpense;
@@ -36,7 +37,7 @@ const ExpenseList = ({
     try {
       const totalExpense = await getTotalExpense();
       const response = await axios.put(
-        `http://localhost:5000/api/v1/user/${userInfo.id}`,
+        `${BASE_URL}/api/v1/user/${userInfo.id}`,
         { totalExpenses: parseInt(totalExpense) - parseInt(expense) }
       );
     } catch (error) {
@@ -49,7 +50,7 @@ const ExpenseList = ({
     const expenseAmount = expense.amount;
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/v1/expense/${expenseId}`
+        `${BASE_URL}/api/v1/expense/${expenseId}`
       );
 
       if (response.statusText === "OK") {

@@ -11,6 +11,7 @@ import {
   Paper,
 } from "@mui/material";
 import axios from "axios";
+import BASE_URL from "../assets/index";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -18,7 +19,7 @@ const UserList = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/v1/user");
+        const response = await axios.get(`${BASE_URL}/api/v1/user`);
         const data = await response.data.body;
         console.log(data);
         setUsers(data);

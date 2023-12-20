@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Container } from "@mui/material";
 import axios from "axios";
 import Cookies from "js-cookie";
+import BASE_URL from "../assets/index";
 
 const PaymentRequest = ({
   setUserInfo,
@@ -14,7 +15,7 @@ const PaymentRequest = ({
   const handlePaymentRequest = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/v1/order/collect-payment`
+        `${BASE_URL}/api/v1/order/collect-payment`
       );
       const order = await response.data.body;
       console.log({ order });
@@ -35,7 +36,7 @@ const PaymentRequest = ({
 
           try {
             const response = await axios.put(
-              `http://localhost:5000/api/v1/user/${userInfo?.id}`,
+              `${BASE_URL}/api/v1/user/${userInfo?.id}`,
               { isPremiumUser: true }
             );
             console.log(response);

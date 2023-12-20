@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { TextField, Button, Container, Typography, Grid } from "@mui/material";
 import axios from "axios";
+import BASE_URL from "../assets/index";
 
 const ExpenseForm = ({ userInfo, fetchExpenses, setExpanded }) => {
   const [formData, setFormData] = useState({
@@ -17,7 +18,7 @@ const ExpenseForm = ({ userInfo, fetchExpenses, setExpanded }) => {
   const getTotalExpense = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/v1/user/${userInfo.id}`
+        `${BASE_URL}/api/v1/user/${userInfo.id}`
       );
       const totalExpense = await response.data.body.totalExpenses;
       return totalExpense;
@@ -30,7 +31,7 @@ const ExpenseForm = ({ userInfo, fetchExpenses, setExpanded }) => {
     try {
       const totalExpense = await getTotalExpense();
       const response = await axios.put(
-        `http://localhost:5000/api/v1/user/${userInfo.id}`,
+        `${BASE_URL}/api/v1/user/${userInfo.id}`,
         { totalExpenses: parseInt(totalExpense) + parseInt(expense) }
       );
     } catch (error) {
@@ -44,12 +45,9 @@ const ExpenseForm = ({ userInfo, fetchExpenses, setExpanded }) => {
     formData.userId = userId;
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/v1/expense",
-        {
-          ...formData,
-        }
-      );
+      const response = await axios.post(`${BASE_URL}/api/v1/expense`, {
+        ...formData,
+      });
 
       if (response.statusText === "Created") {
         await updateTotalExpense(response.data.body.amount);

@@ -15,6 +15,7 @@ import ExpenseList from "../components/ExpenseList";
 import UserList from "../components/UserList";
 import NoExpensesMessage from "../ui/NoExpenseMessage";
 import axios from "axios";
+import BASE_URL from "../assets/index";
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -82,7 +83,7 @@ export default function CustomizedAccordions() {
   const getAllDownloads = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/v1/download/${userInfo.id}`
+        `${BASE_URL}/api/v1/download/${userInfo.id}`
       );
       let data = await response.data.body;
       data = data.map((download) => {
@@ -106,7 +107,7 @@ export default function CustomizedAccordions() {
 
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/v1/expense/${userId}?page=${page}`
+        `${BASE_URL}/api/v1/expense/${userId}?page=${page}`
       );
       console.log(`Response from get all expenses`, response);
       const data = (await response.data.body) || [];

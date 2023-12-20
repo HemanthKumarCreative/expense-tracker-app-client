@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Box } from "@mui/material";
 import axios from "axios";
+import BASE_URL from "../assets/index";
 
 const ReportGeneration = ({
   isPremiumUser,
@@ -15,7 +16,7 @@ const ReportGeneration = ({
     };
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/v1/download`,
+        `${BASE_URL}/api/v1/download`,
         downloadRecord
       );
       const data = await response.data;
@@ -30,9 +31,7 @@ const ReportGeneration = ({
   const handleDownload = async () => {
     const userId = userInfo.id;
     try {
-      const response = await axios.post(
-        `http://localhost:5000/api/v1/report/${userId}`
-      );
+      const response = await axios.post(`${BASE_URL}/api/v1/report/${userId}`);
       console.log({ response });
       const data = await response.data.body;
       const reportUrl = data?.report_url;
