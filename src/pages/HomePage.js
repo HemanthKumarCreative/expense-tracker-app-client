@@ -69,6 +69,7 @@ function formatTimestamp(timestamp) {
 
 axios.defaults.headers.common["Authorization"] = Cookies.get("token");
 axios.defaults.headers.post["Content-Type"] = "application/json";
+axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
 
 export default function CustomizedAccordions() {
   const [expanded, setExpanded] = React.useState("panel2");

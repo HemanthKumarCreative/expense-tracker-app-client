@@ -1,2 +1,2 @@
-const BASE_URL = "http://13.50.45.67:5000";
+const BASE_URL = "https://exp-track-service.onrender.com";
 export default BASE_URL;
