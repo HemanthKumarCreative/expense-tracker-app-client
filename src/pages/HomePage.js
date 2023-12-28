@@ -110,7 +110,6 @@ export default function CustomizedAccordions() {
       const response = await axios.get(
         `${BASE_URL}/api/v1/expense/${userId}?page=${page}`
       );
-      console.log(`Response from get all expenses`, response);
       const data = (await response.data.body) || [];
       setExpenses(data.expenses);
       setPage(data.currentPage);

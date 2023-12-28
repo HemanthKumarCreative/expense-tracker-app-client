@@ -49,7 +49,7 @@ const ExpenseForm = ({ userInfo, fetchExpenses, setExpanded }) => {
         ...formData,
       });
 
-      if (response.statusText === "Created") {
+      if (response.status === 201 || response.status === 200) {
         await updateTotalExpense(response.data.body.amount);
         await fetchExpenses();
         setExpanded("panel2");

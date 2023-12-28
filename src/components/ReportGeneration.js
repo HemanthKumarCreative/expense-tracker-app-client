@@ -32,7 +32,6 @@ const ReportGeneration = ({
     const userId = userInfo.id;
     try {
       const response = await axios.post(`${BASE_URL}/api/v1/report/${userId}`);
-      console.log({ response });
       const data = await response.data.body;
       const reportUrl = data?.report_url;
       if (reportUrl !== undefined) {

@@ -21,7 +21,6 @@ const UserList = () => {
       try {
         const response = await axios.get(`${BASE_URL}/api/v1/user`);
         const data = await response.data.body;
-        console.log(data);
         setUsers(data);
       } catch (error) {
         console.error("Error:", error);

@@ -26,13 +26,13 @@ const Signup = () => {
       const response = await axios.post(`${BASE_URL}/api/v1/user/signup`, {
         ...formData,
       });
-      if (response.statusText === "Created") {
+      if (response.status === 201 || response.status === 200) {
         const data = await response.data;
 
         Cookies.set("userInfo", JSON.stringify(data.body.user));
         Cookies.set("token", data.body.token);
         navigate("/Home");
-        window.location.reload(true);
+        // window.location.reload(true);
       } else {
         const errorData = await response.data;
         console.error("Error:", errorData.message);

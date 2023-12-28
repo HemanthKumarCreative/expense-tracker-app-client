@@ -18,7 +18,6 @@ const PaymentRequest = ({
         `${BASE_URL}/api/v1/order/collect-payment`
       );
       const order = await response.data.body;
-      console.log({ order });
       const options = {
         key: "rzp_test_KWXeQRtZiHyU85",
         amount: order.amount,
@@ -39,7 +38,6 @@ const PaymentRequest = ({
               `${BASE_URL}/api/v1/user/${userInfo?.id}`,
               { isPremiumUser: true }
             );
-            console.log(response);
             const { body } = await response.data;
 
             setUserInfo(body);

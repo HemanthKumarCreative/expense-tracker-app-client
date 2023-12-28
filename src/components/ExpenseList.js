@@ -53,7 +53,7 @@ const ExpenseList = ({
         `${BASE_URL}/api/v1/expense/${expenseId}`
       );
 
-      if (response.statusText === "OK") {
+      if (response.status === 201 || response.status === 200) {
         await response.data;
         updateTotalExpense(expenseAmount);
         fetchExpenses();

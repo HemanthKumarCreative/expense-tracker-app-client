@@ -26,7 +26,7 @@ const Login = () => {
         ...formData,
       });
 
-      if (response.statusText === "OK") {
+      if (response.status === 201 || response.status === 200) {
         const data = await response.data.body;
 
         Cookies.set("userInfo", JSON.stringify(data.user));
