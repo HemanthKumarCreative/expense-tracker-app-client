@@ -3,7 +3,7 @@ import { TextField, Button, Container, Typography } from "@mui/material";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import BASE_URL from "../assets/index";
+import BASE_URL from "../../assets/index";
 
 const ResetPasswordForm = () => {
   const { search } = useLocation();

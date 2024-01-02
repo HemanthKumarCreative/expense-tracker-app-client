@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "@mui/material";
-import ForgotPasswordForm from "../components/ForgetPassword";
+import ForgotPasswordForm from "../../components/ForgetPassword/ForgetPassword";
 
 const ForgetPasswordPage = () => {
   return (

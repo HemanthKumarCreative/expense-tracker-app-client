@@ -1,0 +1,80 @@
+.container {
+  margin: 5vh auto;
+  padding: 1rem 2rem;
+  border: 2px solid #05c185;
+  width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 8px;
+}
+
+.loginHead {
+  color: #05c185;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+}
+
+/* Default styles */
+.inputBox {
+  width: 90%;
+  padding: 1rem;
+  border: 1px solid #ccc; /* Adding a light border */
+  border-radius: 8px;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease; /* Include border-color in transition */
+}
+
+/* Hover effect */
+.inputBox:hover {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); /* Adjust the shadow as needed */
+  border-color: #aaa; /* Change border color on hover */
+}
+
+/* Click effect */
+.inputBox:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4); /* Adjust the shadow as needed */
+  border-color: #555; /* Change border color on click */
+}
+
+.btn {
+  background-color: #05c185;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.btn:hover {
+  background-color: #0f917a;
+  color: #fff; /* You can adjust the text color on hover */
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 55vh;
+}
+
+.signupLink {
+  display: flex;
+  justify-content: space-between;
+  width: 9rem;
+}
+
+.accAction {
+  display: flex;
+  flex-direction: column;
+  height: 10vh;
+  justify-content: space-between;
+}
+
+.link {
+  color: #05c185;
+  text-decoration: none;
+}

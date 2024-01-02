@@ -35,7 +35,7 @@ const ReportHistoryTable = ({ downloads }) => {
               <TableCell>
                 <Button
                   variant="contained"
-                  color="primary"
+                  color="success"
                   href={report.fileLink}
                   download={true}
                   style={{ margin: "5px" }}

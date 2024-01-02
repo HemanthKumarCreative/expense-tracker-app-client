@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Container } from "@mui/material";
 import axios from "axios";
 import Cookies from "js-cookie";
-import BASE_URL from "../assets/index";
+import BASE_URL from "../../assets/index";
 
 const PaymentRequest = ({
   setUserInfo,

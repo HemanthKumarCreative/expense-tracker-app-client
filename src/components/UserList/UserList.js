@@ -11,7 +11,7 @@ import {
   Paper,
 } from "@mui/material";
 import axios from "axios";
-import BASE_URL from "../assets/index";
+import BASE_URL from "../../assets/index";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);

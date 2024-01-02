@@ -9,9 +9,9 @@ import {
   TableCell,
   Button,
 } from "@mui/material";
-import DeleteButton from "../ui/Delete";
+import DeleteButton from "../../ui/Delete";
 import axios from "axios";
-import BASE_URL from "../assets/index";
+import BASE_URL from "../../assets/index";
 
 const ExpenseList = ({
   expenses,

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { TextField, Button, Container, Typography, Grid } from "@mui/material";
 import axios from "axios";
-import BASE_URL from "../assets/index";
+import BASE_URL from "../../assets/index";
+import classes from "./ExpenseForm.module.css";
 
 const ExpenseForm = ({ userInfo, fetchExpenses, setExpanded }) => {
+  const { btn } = classes;
   const [formData, setFormData] = useState({
     amount: "",
     description: "",
@@ -83,6 +85,7 @@ const ExpenseForm = ({ userInfo, fetchExpenses, setExpanded }) => {
               value={formData.amount}
               onChange={handleChange}
               variant="outlined"
+              color="success"
             />
           </Grid>
           <Grid item xs={12}>
@@ -94,6 +97,7 @@ const ExpenseForm = ({ userInfo, fetchExpenses, setExpanded }) => {
               value={formData.description}
               onChange={handleChange}
               variant="outlined"
+              color="success"
             />
           </Grid>
           <Grid item xs={12}>
@@ -107,15 +111,29 @@ const ExpenseForm = ({ userInfo, fetchExpenses, setExpanded }) => {
               variant="outlined"
               SelectProps={{
                 native: true,
+                color: "success",
               }}
+              color="success"
             >
-              <option value="Food">Food</option>
-              <option value="Petrol">Petrol</option>
-              <option value="Salary">Salary</option>
+              <option value="Food" color="success">
+                Food
+              </option>
+              <option value="Petrol" color="success">
+                Petrol
+              </option>
+              <option value="Salary" color="success">
+                Salary
+              </option>
             </TextField>
           </Grid>
           <Grid item xs={12}>
-            <Button variant="contained" color="primary" type="submit" fullWidth>
+            <Button
+              className={btn}
+              variant="contained"
+              color="primary"
+              type="submit"
+              fullWidth
+            >
               Add Expense
             </Button>
           </Grid>
