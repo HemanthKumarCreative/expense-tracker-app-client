@@ -2,6 +2,8 @@ import React from "react";
 import { Button, Box } from "@mui/material";
 import axios from "axios";
 import BASE_URL from "../../assets/index";
+import { Container, Typography } from "@mui/material";
+import { display } from "@mui/system";
 
 const ReportGeneration = ({
   isPremiumUser,
@@ -46,7 +48,17 @@ const ReportGeneration = ({
   };
 
   return (
-    <Box>
+    <Container
+      maxWidth="sm"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+      }}
+    >
+      <Typography variant="h4" align="center" gutterBottom>
+        Report Generation
+      </Typography>
       <Button
         variant="contained"
         color="secondary"
@@ -55,7 +67,7 @@ const ReportGeneration = ({
       >
         Download Expenses
       </Button>
-    </Box>
+    </Container>
   );
 };
 

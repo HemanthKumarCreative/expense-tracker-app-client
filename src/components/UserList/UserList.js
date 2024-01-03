@@ -32,8 +32,8 @@ const UserList = () => {
   }, []);
 
   return (
-    <Container maxWidth="md" sx={{ marginTop: 4, marginBottom: 4 }}>
-      <Typography variant="h4" gutterBottom>
+    <Container maxWidth="sm">
+      <Typography variant="h4" align="center" gutterBottom>
         Leader Board
       </Typography>
       <TableContainer component={Paper}>
@@ -46,7 +46,7 @@ const UserList = () => {
           </TableHead>
           <TableBody>
             {users?.length &&
-              users.map((user) => (
+              users?.slice(0, 6).map((user) => (
                 <TableRow key={user.id}>
                   <TableCell>{user.name}</TableCell>
                   <TableCell>{user.totalExpenses}</TableCell>

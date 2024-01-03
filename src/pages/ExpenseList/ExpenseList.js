@@ -1,12 +1,23 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import AppBar from "../../components/AppBar/AppBar";
 import SideBar from "../../components/SideBar/SideBar";
 import ExpenseForm from "../../components/ExpenseForm/ExpenseForm";
 import ExpenseList from "../../components/ExpenseList/ExpenseList";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchExpenses } from "../../redux/expense/expenseSlice";
+import Cookies from "js-cookie";
 
-export default function HomePage() {
+export default function ExpenseListPage() {
+  const userInfo = JSON.parse(Cookies.get("userInfo"));
+  const dispatch = useDispatch();
+  const expense = useSelector((state) => state.expense);
+
+  useEffect(() => {
+    dispatch(fetchExpenses(userInfo?.id));
+  }, []);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
@@ -17,7 +28,7 @@ export default function HomePage() {
           <SideBar />
         </Grid>
         <Grid item xs={12} md={12}>
-          <ExpenseForm />
+          <ExpenseList expenses={expense?.expenses} />
         </Grid>
       </Grid>
     </Box>

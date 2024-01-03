@@ -4,7 +4,7 @@ import axios from "axios";
 import BASE_URL from "../../assets/index";
 import classes from "./ExpenseForm.module.css";
 
-const ExpenseForm = ({ userInfo, fetchExpenses, setExpanded }) => {
+const ExpenseForm = ({ userInfo }) => {
   const { btn } = classes;
   const [formData, setFormData] = useState({
     amount: "",
@@ -53,8 +53,6 @@ const ExpenseForm = ({ userInfo, fetchExpenses, setExpanded }) => {
 
       if (response.statusText === "Created") {
         await updateTotalExpense(response.data.body.amount);
-        await fetchExpenses();
-        setExpanded("panel2");
       } else {
         const errorData = await response.data;
         console.error("Error:", errorData.message);

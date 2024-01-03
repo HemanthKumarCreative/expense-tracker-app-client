@@ -5,8 +5,9 @@ import AppBar from "../../components/AppBar/AppBar";
 import SideBar from "../../components/SideBar/SideBar";
 import ExpenseForm from "../../components/ExpenseForm/ExpenseForm";
 import ExpenseList from "../../components/ExpenseList/ExpenseList";
+import ReportGeneration from "../../components/ReportGeneration/ReportGeneration";
 
-export default function HomePage() {
+export default function GenerateReport() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
@@ -17,7 +18,7 @@ export default function HomePage() {
           <SideBar />
         </Grid>
         <Grid item xs={12} md={12}>
-          <ExpenseForm />
+          <ReportGeneration />
         </Grid>
       </Grid>
     </Box>

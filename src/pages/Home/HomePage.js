@@ -5,6 +5,8 @@ import AppBar from "../../components/AppBar/AppBar";
 import SideBar from "../../components/SideBar/SideBar";
 import ExpenseForm from "../../components/ExpenseForm/ExpenseForm";
 import ExpenseList from "../../components/ExpenseList/ExpenseList";
+import Cookies from "js-cookie";
+const userInfo = JSON.parse(Cookies.get("userInfo"));
 
 export default function HomePage() {
   return (
@@ -17,7 +19,7 @@ export default function HomePage() {
           <SideBar />
         </Grid>
         <Grid item xs={12} md={12}>
-          <ExpenseForm />
+          <ExpenseForm userInfo={userInfo} />
         </Grid>
       </Grid>
     </Box>
