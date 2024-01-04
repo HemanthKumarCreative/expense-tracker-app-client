@@ -3,7 +3,6 @@ import { Button, Box } from "@mui/material";
 import axios from "axios";
 import BASE_URL from "../../assets/index";
 import { Container, Typography } from "@mui/material";
-import { display } from "@mui/system";
 
 const ReportGeneration = ({
   isPremiumUser,

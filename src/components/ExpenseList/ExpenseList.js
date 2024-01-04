@@ -34,12 +34,6 @@ const ExpenseList = ({ expenses }) => {
               <TableCell>{expense.amount}</TableCell>
               <TableCell>{expense.description}</TableCell>
               <TableCell>{expense.category}</TableCell>
-              <TableCell>
-                <DeleteButton
-                  id={expense.id}
-                  onClick={() => handleDelete(expense)}
-                />
-              </TableCell>
             </TableRow>
           ))}
         </TableBody>
