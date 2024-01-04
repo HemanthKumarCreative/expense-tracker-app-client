@@ -2,7 +2,6 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import AppBar from "../../components/AppBar/AppBar";
 import SideBar from "../../components/SideBar/SideBar";
-import ExpenseForm from "../../components/ExpenseForm/ExpenseForm";
 import ExpenseList from "../../components/ExpenseList/ExpenseList";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,7 +24,7 @@ export default function ExpenseListPage() {
           <AppBar isUserLoggedIn={true} />
         </Grid>
         <Grid item xs={12} md={2}>
-          <SideBar />
+          <SideBar isPremiumUser={userInfo?.isPremiumUser} />
         </Grid>
         <Grid item xs={12} md={12}>
           <ExpenseList expenses={expense?.expenses} />

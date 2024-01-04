@@ -8,13 +8,8 @@ import {
   TableRow,
   TableCell,
 } from "@mui/material";
-import DeleteButton from "../../ui/Delete";
 
 const ExpenseList = ({ expenses }) => {
-  const handleDelete = () => {
-    console.log("hii");
-  };
-
   return (
     <Container maxWidth="sm">
       <Typography variant="h4" align="center" gutterBottom>

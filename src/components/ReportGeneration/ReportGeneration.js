@@ -3,13 +3,11 @@ import { Button, Box } from "@mui/material";
 import axios from "axios";
 import BASE_URL from "../../assets/index";
 import { Container, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
 
-const ReportGeneration = ({
-  isPremiumUser,
-  userInfo,
-  getAllDownloads,
-  expenses,
-}) => {
+const ReportGeneration = ({ isPremiumUser, userInfo }) => {
+  const expense = useSelector((state) => state.expense);
+
   const storeToDB = async (reportUrl) => {
     const downloadRecord = {
       userId: userInfo.id,
@@ -20,10 +18,6 @@ const ReportGeneration = ({
         `${BASE_URL}/api/v1/download`,
         downloadRecord
       );
-      const data = await response.data;
-      if (data) {
-        getAllDownloads();
-      }
     } catch (err) {
       console.error(err);
     }
@@ -62,7 +56,7 @@ const ReportGeneration = ({
         variant="contained"
         color="secondary"
         onClick={handleDownload}
-        disabled={!isPremiumUser || expenses?.length === 0}
+        disabled={!isPremiumUser || expense?.expenses?.length === 0}
       >
         Download Expenses
       </Button>

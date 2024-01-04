@@ -24,7 +24,7 @@ export default function ReportsHistoryPage() {
           <AppBar isUserLoggedIn={true} />
         </Grid>
         <Grid item xs={12} md={2}>
-          <SideBar />
+          <SideBar isPremiumUser={userInfo?.isPremiumUser} />
         </Grid>
         <Grid item xs={12} md={12}>
           <ReportHistoryTable downloads={report?.reports} />

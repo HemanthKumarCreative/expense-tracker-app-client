@@ -9,6 +9,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import classes from "./AppBar.module.css";
 import proImage from "../../assets/pro.png";
 import basicImage from "../../assets/basic.png";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 export default function ButtonAppBar({ isUserLoggedIn, isPremiumUser }) {
   const {
@@ -22,11 +24,24 @@ export default function ButtonAppBar({ isUserLoggedIn, isPremiumUser }) {
     img,
     buttonContainer,
   } = classes;
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    Cookies.remove("token");
+    Cookies.remove("userInfo");
+    navigate("/");
+  };
+
   return (
     <Box position="static" className={classes.appBar}>
       <div className={classes.container}>
         <div>
-          {isUserLoggedIn && <button className={logOutBtn}>logout</button>}
+          {isUserLoggedIn && (
+            <button className={logOutBtn} onClick={handleLogout}>
+              logout
+            </button>
+          )}
         </div>
       </div>
     </Box>
