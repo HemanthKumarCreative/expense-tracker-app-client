@@ -11,6 +11,7 @@ import proImage from "../../assets/pro.png";
 import basicImage from "../../assets/basic.png";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import PaymentRequest from "../PaymentRequest/PaymentRequest";
 
 export default function ButtonAppBar({ isUserLoggedIn, isPremiumUser }) {
   const {
@@ -23,6 +24,8 @@ export default function ButtonAppBar({ isUserLoggedIn, isPremiumUser }) {
     imgContainer,
     img,
     buttonContainer,
+    profile,
+    btn,
   } = classes;
 
   const navigate = useNavigate();
@@ -36,6 +39,23 @@ export default function ButtonAppBar({ isUserLoggedIn, isPremiumUser }) {
   return (
     <Box position="static" className={classes.appBar}>
       <div className={classes.container}>
+        <div className={profile}>
+          <img
+            src={isPremiumUser ? proImage : basicImage}
+            alt={isPremiumUser ? "Pro" : "Basic"}
+            className={img}
+          />
+          <h3>ET</h3>
+          <p>
+            {isPremiumUser ? (
+              "Premium User"
+            ) : (
+              <button className={btn}>
+                <PaymentRequest />
+              </button>
+            )}
+          </p>
+        </div>
         <div>
           {isUserLoggedIn && (
             <button className={logOutBtn} onClick={handleLogout}>

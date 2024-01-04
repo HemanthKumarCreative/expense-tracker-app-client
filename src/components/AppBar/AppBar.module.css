@@ -9,7 +9,7 @@
 
 .container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   width: 97vw;
 }
@@ -51,8 +51,8 @@
 }
 
 .img {
-  width: 50%;
-  height: 50%;
+  width: 50px;
+  height: 25px;
   border: 1.5px solid white;
   border-radius: 0.5rem;
 }
@@ -63,4 +63,38 @@
   border: none;
   padding: 5px 8px;
   border-radius: 5px;
+}
+
+.btn {
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: sans-serif;
+  cursor: pointer;
+  padding: 12px;
+  min-width: 100px;
+  border: 0px;
+  -webkit-transition: background-color 100ms linear;
+  -ms-transition: background-color 100ms linear;
+  transition: background-color 100ms linear;
+  border-radius: 20px;
+  background: #2ecc71;
+  color: #ffffff;
+}
+
+.btn:focus,
+.btn.focus {
+  outline: 0;
+}
+
+.btn:hover {
+  background: #27ae60;
+  color: #ffffff;
+}
+
+.profile {
+  display: flex;
+  width: 40vw;
+  height: 80%;
+  justify-content: space-between;
+  align-items: center;
 }

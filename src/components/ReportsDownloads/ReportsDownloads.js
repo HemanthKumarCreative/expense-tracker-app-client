@@ -16,7 +16,7 @@ const ReportHistoryTable = ({ downloads }) => {
   return (
     <Container maxWidth="sm">
       <Typography variant="h4" align="center" gutterBottom>
-        Expense List
+        Download History
       </Typography>
       <TableContainer component={Paper}>
         <Table style={{ width: "65%" }}>

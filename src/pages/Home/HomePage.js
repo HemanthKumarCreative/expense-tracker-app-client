@@ -4,15 +4,20 @@ import Grid from "@mui/material/Grid";
 import AppBar from "../../components/AppBar/AppBar";
 import SideBar from "../../components/SideBar/SideBar";
 import ExpenseForm from "../../components/ExpenseForm/ExpenseForm";
-import ExpenseList from "../../components/ExpenseList/ExpenseList";
 import Cookies from "js-cookie";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import MobileView from "../MobileView/MobileView";
+
 let userInfo = {};
 if (Cookies.get("userInfo")) {
   userInfo = JSON.parse(Cookies.get("userInfo"));
 }
 
 export default function HomePage() {
-  return (
+  const theme = useTheme();
+  const mobileScreen = useMediaQuery(theme.breakpoints.down("md"));
+  return !mobileScreen ? (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={12}>
@@ -26,5 +31,7 @@ export default function HomePage() {
         </Grid>
       </Grid>
     </Box>
+  ) : (
+    <MobileView />
   );
 }

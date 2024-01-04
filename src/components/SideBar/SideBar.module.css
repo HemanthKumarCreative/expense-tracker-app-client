@@ -121,12 +121,6 @@ body.active .wrapper .section {
   width: 100%;
 }
 
-@media (max-width: 768px) {
-  .wrapper {
-    display: none;
-  }
-}
-
 .btn {
   appearance: none;
   -webkit-appearance: none;
