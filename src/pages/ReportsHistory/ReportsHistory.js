@@ -7,17 +7,22 @@ import ReportHistoryTable from "../../components/ReportsDownloads/ReportsDownloa
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllReports } from "../../redux/report/reportSlice";
 import Cookies from "js-cookie";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import MobileView from "../MobileView/MobileView";
 
 export default function ReportsHistoryPage() {
   const userInfo = JSON.parse(Cookies.get("userInfo"));
   const dispatch = useDispatch();
   const report = useSelector((state) => state.report);
+  const theme = useTheme();
+  const mobileScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   useEffect(() => {
     dispatch(fetchAllReports(userInfo?.id));
   }, []);
 
-  return (
+  return !mobileScreen ? (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={12}>
@@ -31,5 +36,7 @@ export default function ReportsHistoryPage() {
         </Grid>
       </Grid>
     </Box>
+  ) : (
+    <MobileView />
   );
 }

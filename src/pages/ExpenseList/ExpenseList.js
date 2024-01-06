@@ -7,6 +7,9 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchExpenses } from "../../redux/expense/expenseSlice";
 import Cookies from "js-cookie";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import MobileView from "../MobileView/MobileView";
 
 export default function ExpenseListPage() {
   const userInfo = JSON.parse(Cookies.get("userInfo"));
@@ -17,7 +20,10 @@ export default function ExpenseListPage() {
     dispatch(fetchExpenses(userInfo?.id));
   }, []);
 
-  return (
+  const theme = useTheme();
+  const mobileScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  return !mobileScreen ? (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={12}>
@@ -27,9 +33,11 @@ export default function ExpenseListPage() {
           <SideBar isPremiumUser={userInfo?.isPremiumUser} />
         </Grid>
         <Grid item xs={12} md={12}>
-          <ExpenseList expenses={expense?.expenses} />
+          <ExpenseList userInfo={userInfo} />
         </Grid>
       </Grid>
     </Box>
+  ) : (
+    <MobileView />
   );
 }

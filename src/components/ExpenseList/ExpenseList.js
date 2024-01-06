@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Container,
   Typography,
@@ -8,8 +8,18 @@ import {
   TableRow,
   TableCell,
 } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchExpenses } from "../../redux/expense/expenseSlice";
 
-const ExpenseList = ({ expenses }) => {
+const ExpenseList = ({ userInfo }) => {
+  const dispatch = useDispatch();
+  const expense = useSelector((state) => state.expense);
+  const { expenses } = expense;
+  console.log({ expenses: expenses.currentPage });
+  useEffect(() => {
+    dispatch(fetchExpenses(userInfo?.id));
+  }, []);
+
   return (
     <Container maxWidth="sm">
       <Typography variant="h4" align="center" gutterBottom>
@@ -24,7 +34,7 @@ const ExpenseList = ({ expenses }) => {
           </TableRow>
         </TableHead>
         <TableBody style={{ height: "13rem" }}>
-          {expenses.map((expense) => (
+          {expenses?.expenses?.map((expense) => (
             <TableRow key={expense.id}>
               <TableCell>{expense.amount}</TableCell>
               <TableCell>{expense.description}</TableCell>

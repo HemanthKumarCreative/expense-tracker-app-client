@@ -45,7 +45,7 @@ export default function ButtonAppBar({ isUserLoggedIn, isPremiumUser }) {
             alt={isPremiumUser ? "Pro" : "Basic"}
             className={img}
           />
-          <h3>ET</h3>
+          <h3 className={classes.brand}>ET</h3>
           <p>
             {isPremiumUser ? (
               "Premium User"

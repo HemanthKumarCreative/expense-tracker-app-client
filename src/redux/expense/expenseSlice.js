@@ -14,8 +14,7 @@ export const fetchExpenses = createAsyncThunk(
     return axios
       .get(`${BASE_URL}/api/v1/expense/${userId}?page=${page}`)
       .then((response) => response.data)
-      .then((data) => data.body)
-      .then((body) => body.expenses);
+      .then((data) => data.body);
   }
 );
 
