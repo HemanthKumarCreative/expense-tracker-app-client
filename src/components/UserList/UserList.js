@@ -12,23 +12,15 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import BASE_URL from "../../assets/index";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUsers } from "../../redux/user/userSlice";
 
 const UserList = () => {
-  const [users, setUsers] = useState([]);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await axios.get(`${BASE_URL}/api/v1/user`);
-        const data = await response.data.body;
-        console.log(data);
-        setUsers(data);
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    };
-
-    fetchUsers();
+    dispatch(fetchUsers());
   }, []);
 
   return (
@@ -45,8 +37,8 @@ const UserList = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {users?.length &&
-              users?.slice(0, 6).map((user) => (
+            {user?.users?.length &&
+              user?.users?.slice(0, 6).map((user) => (
                 <TableRow key={user.id}>
                   <TableCell>{user.name}</TableCell>
                   <TableCell>{user.totalExpenses}</TableCell>

@@ -11,8 +11,7 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MobileView from "../MobileView/MobileView";
 
-export default function ExpenseListPage() {
-  const userInfo = JSON.parse(Cookies.get("userInfo"));
+export default function ExpenseListPage({ userInfo }) {
   const dispatch = useDispatch();
   const expense = useSelector((state) => state.expense);
 
@@ -27,10 +26,16 @@ export default function ExpenseListPage() {
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={12}>
-          <AppBar isUserLoggedIn={true} />
+          <AppBar
+            isUserLoggedIn={true}
+            isPremiumUser={userInfo?.isPremiumUser}
+          />
         </Grid>
         <Grid item xs={12} md={2}>
-          <SideBar isPremiumUser={userInfo?.isPremiumUser} />
+          <SideBar
+            isPremiumUser={userInfo?.isPremiumUser}
+            userInfo={userInfo}
+          />
         </Grid>
         <Grid item xs={12} md={12}>
           <ExpenseList userInfo={userInfo} />

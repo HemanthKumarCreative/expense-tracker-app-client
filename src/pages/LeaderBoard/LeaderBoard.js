@@ -9,8 +9,7 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MobileView from "../MobileView/MobileView";
 
-export default function LeaderBoardPage() {
-  const userInfo = JSON.parse(Cookies.get("userInfo"));
+export default function LeaderBoardPage({ userInfo }) {
   const theme = useTheme();
   const mobileScreen = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -18,13 +17,19 @@ export default function LeaderBoardPage() {
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={12}>
-          <AppBar isUserLoggedIn={true} />
+          <AppBar
+            isUserLoggedIn={true}
+            isPremiumUser={userInfo?.isPremiumUser}
+          />
         </Grid>
         <Grid item xs={12} md={2}>
-          <SideBar isPremiumUser={userInfo?.isPremiumUser} />
+          <SideBar
+            isPremiumUser={userInfo?.isPremiumUser}
+            userInfo={userInfo}
+          />
         </Grid>
         <Grid item xs={12} md={12}>
-          <UserList />
+          <UserList userInfo={userInfo} />
         </Grid>
       </Grid>
     </Box>

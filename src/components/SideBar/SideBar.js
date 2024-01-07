@@ -7,11 +7,10 @@ import { useLocation } from "react-router-dom";
 import PaymentRequest from "../PaymentRequest/PaymentRequest";
 import Cookies from "js-cookie";
 
-function SideBar({ isPremiumUser }) {
+function SideBar({ isPremiumUser, userInfo }) {
   const location = useLocation();
   const { pathname } = location;
   const splitLocation = pathname.split("/");
-  const userInfo = JSON.parse(Cookies.get("userInfo"));
   isPremiumUser = userInfo?.isPremiumUser;
   const { wrapper, sidebar, profile, active, item, logOutBtn, btn } = classes;
 

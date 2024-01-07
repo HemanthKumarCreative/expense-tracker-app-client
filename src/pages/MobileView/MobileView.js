@@ -33,7 +33,10 @@ function MobileView() {
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={12}>
-          <AppBar isUserLoggedIn={true} />
+          <AppBar
+            isUserLoggedIn={true}
+            isPremiumUser={userInfo?.isPremiumUser}
+          />
         </Grid>
         <Grid item xs={12} md={12}>
           <ExpenseForm userInfo={userInfo} />

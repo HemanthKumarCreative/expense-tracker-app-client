@@ -36,6 +36,7 @@ export default function ButtonAppBar({ isUserLoggedIn, isPremiumUser }) {
     navigate("/");
   };
 
+  console.log({ isPremiumUser, isUserLoggedIn });
   return (
     <Box position="static" className={classes.appBar}>
       <div className={classes.container}>
@@ -56,13 +57,13 @@ export default function ButtonAppBar({ isUserLoggedIn, isPremiumUser }) {
             )}
           </p>
         </div>
-        <div>
-          {isUserLoggedIn && (
-            <button className={logOutBtn} onClick={handleLogout}>
-              logout
-            </button>
-          )}
-        </div>
+      </div>
+      <div>
+        {isUserLoggedIn && (
+          <button className={logOutBtn} onClick={handleLogout}>
+            logout
+          </button>
+        )}
       </div>
     </Box>
   );

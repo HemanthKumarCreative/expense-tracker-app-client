@@ -9,19 +9,24 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MobileView from "../MobileView/MobileView";
 
-export default function GenerateReport() {
+export default function GenerateReport({ userInfo }) {
   const theme = useTheme();
   const mobileScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const userInfo = JSON.parse(Cookies.get("userInfo"));
 
   return !mobileScreen ? (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={12}>
-          <AppBar isUserLoggedIn={true} />
+          <AppBar
+            isUserLoggedIn={true}
+            isPremiumUser={userInfo?.isPremiumUser}
+          />
         </Grid>
         <Grid item xs={12} md={2}>
-          <SideBar isPremiumUser={userInfo?.isPremiumUser} />
+          <SideBar
+            isPremiumUser={userInfo?.isPremiumUser}
+            userInfo={userInfo}
+          />
         </Grid>
         <Grid item xs={12} md={12}>
           <ReportGeneration

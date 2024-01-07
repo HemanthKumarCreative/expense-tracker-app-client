@@ -4,8 +4,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import BASE_URL from "../../assets/index";
 import { useNavigate } from "react-router-dom";
-const PaymentRequest = () => {
-  const userInfo = JSON.parse(Cookies.get("userInfo"));
+const PaymentRequest = ({ userInfo }) => {
   const [isPremiumUser, setIsPremiumUser] = useState(userInfo?.isPremiumUser);
   const navigate = useNavigate();
 
