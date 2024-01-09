@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import BASE_URL from "../../assets/index";
+import { BASE_URL } from "../../assets/index";
 import axios from "axios";
 
 const initialState = {
@@ -8,13 +8,38 @@ const initialState = {
   error: "",
 };
 
+function formatTimestamp(timestamp) {
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  const date = new Date(timestamp).toLocaleDateString(undefined, options);
+  const time = new Date(timestamp).toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  return {
+    date: date,
+    time: time,
+  };
+}
+
 export const fetchExpenses = createAsyncThunk(
   "expense/fetchExpenses",
-  (userId, page) => {
+  (userId) => {
     return axios
-      .get(`${BASE_URL}/api/v1/expense/${userId}?page=${page}`)
+      .get(`${BASE_URL}/api/v1/expense/${userId}`)
       .then((response) => response.data)
-      .then((data) => data.body);
+      .then((data) => data.body)
+      .then((expense) => {
+        const { expenses } = expense;
+        return expenses.map((expense) => {
+          const dateTimeObject = formatTimestamp(expense.createdAt);
+          return {
+            ...expense,
+            date: dateTimeObject.date,
+            time: dateTimeObject.time,
+          };
+        });
+      });
   }
 );
 

@@ -1,12 +1,14 @@
 import React from "react";
 import { Button, Box } from "@mui/material";
 import axios from "axios";
-import BASE_URL from "../../assets/index";
+import { BASE_URL } from "../../assets/index";
 import { Container, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
+import classes from "./ReportGeneration.module.css";
 
 const ReportGeneration = ({ isPremiumUser, userInfo }) => {
   const expense = useSelector((state) => state.expense);
+  const { btn } = classes;
 
   const storeToDB = async (reportUrl) => {
     const downloadRecord = {
@@ -42,7 +44,7 @@ const ReportGeneration = ({ isPremiumUser, userInfo }) => {
 
   return (
     <Container
-      maxWidth="sm"
+      maxWidth="xs"
       style={{
         display: "flex",
         flexDirection: "column",
@@ -57,6 +59,7 @@ const ReportGeneration = ({ isPremiumUser, userInfo }) => {
         color="secondary"
         onClick={handleDownload}
         disabled={!isPremiumUser || expense?.expenses?.length === 0}
+        className={btn}
       >
         Download Expenses
       </Button>

@@ -1,0 +1,13 @@
+.scroller {
+  height: 80vh !important;
+  overflow-y: scroll !important;
+}
+
+.heading {
+  font-weight: 700 !important;
+  font-size: 15px !important;
+}
+
+.rightAlign {
+  text-align: right !important;
+}

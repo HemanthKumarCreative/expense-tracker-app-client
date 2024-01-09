@@ -5,7 +5,7 @@ import { TextField, Button } from "@mui/material";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import BASE_URL from "../../assets/index";
+import { BASE_URL } from "../../assets/index";
 
 export default function Login() {
   const {
@@ -69,6 +69,7 @@ export default function Login() {
                 value={formData.email}
                 name="email"
                 onChange={handleChange}
+                placeholder="Enter the email"
               />
               <div>Password</div>
               <input
@@ -77,6 +78,7 @@ export default function Login() {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
+                placeholder="Enter the password"
               />
               <div>
                 <button className={btn} type="submit">
@@ -85,12 +87,12 @@ export default function Login() {
               </div>
             </form>
             <div className={accAction}>
-              <a href="/signup" className={link}>
+              <a onClick={() => navigate("/forget-password")} className={link}>
                 Forgot Password?
               </a>
               <div className={signupLink}>
                 <div>New user?</div>
-                <a href="/signup" className={link}>
+                <a onClick={() => navigate("/signup")} className={link}>
                   Sign up
                 </a>
               </div>

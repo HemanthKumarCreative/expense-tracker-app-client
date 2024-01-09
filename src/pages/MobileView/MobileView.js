@@ -36,6 +36,7 @@ function MobileView() {
           <AppBar
             isUserLoggedIn={true}
             isPremiumUser={userInfo?.isPremiumUser}
+            userInfo={userInfo}
           />
         </Grid>
         <Grid item xs={12} md={12}>
@@ -44,18 +45,22 @@ function MobileView() {
         <Grid item xs={12} md={12}>
           <ExpenseList expenses={expense?.expenses} />
         </Grid>
-        <Grid item xs={12} md={12}>
-          <UserList />
-        </Grid>
-        <Grid item xs={12} md={12}>
-          <ReportGeneration
-            userInfo={userInfo}
-            isPremiumUser={userInfo?.isPremiumUser}
-          />
-        </Grid>
-        <Grid item xs={12} md={12}>
-          <ReportHistoryTable downloads={report?.reports} />
-        </Grid>
+        {userInfo?.isPremiumUser && (
+          <>
+            <Grid item xs={12} md={12}>
+              <UserList />
+            </Grid>
+            <Grid item xs={12} md={12}>
+              <ReportGeneration
+                userInfo={userInfo}
+                isPremiumUser={userInfo?.isPremiumUser}
+              />
+            </Grid>
+            <Grid item xs={12} md={12}>
+              <ReportHistoryTable downloads={report?.reports} />
+            </Grid>
+          </>
+        )}
       </Grid>
     </Box>
   );

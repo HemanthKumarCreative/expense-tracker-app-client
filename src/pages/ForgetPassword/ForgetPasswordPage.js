@@ -1,13 +1,13 @@
-import React from "react";
-import { Container } from "@mui/material";
+import { Fragment } from "react";
+import AppBar from "../../components/AppBar/AppBar";
 import ForgotPasswordForm from "../../components/ForgetPassword/ForgetPassword";
-
-const ForgetPasswordPage = () => {
+function Login() {
   return (
-    <Container maxWidth="sm">
+    <Fragment>
+      <AppBar isUserLoggedIn={false} />
       <ForgotPasswordForm />
-    </Container>
+    </Fragment>
   );
-};
+}
 
-export default ForgetPasswordPage;
+export default Login;

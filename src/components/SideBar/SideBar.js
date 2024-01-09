@@ -28,7 +28,7 @@ function SideBar({ isPremiumUser, userInfo }) {
               "Premium User"
             ) : (
               <button className={btn}>
-                <PaymentRequest />
+                <PaymentRequest userInfo={userInfo} />
               </button>
             )}
           </p>

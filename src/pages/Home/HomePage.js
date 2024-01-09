@@ -19,6 +19,7 @@ export default function HomePage({ userInfo }) {
           <AppBar
             isUserLoggedIn={true}
             isPremiumUser={userInfo?.isPremiumUser}
+            userInfo={userInfo}
           />
         </Grid>
         <Grid item xs={12} md={2}>

@@ -1,13 +1,14 @@
-import React from "react";
-import { Container } from "@mui/material";
+import { Fragment } from "react";
+import AppBar from "../../components/AppBar/AppBar";
 import ResetPasswordForm from "../../components/ResetPassword/ResetPassword";
 
-const ResetPasswordPage = () => {
+function Login() {
   return (
-    <Container maxWidth="sm">
+    <Fragment>
+      <AppBar isUserLoggedIn={false} />
       <ResetPasswordForm />
-    </Container>
+    </Fragment>
   );
-};
+}
 
-export default ResetPasswordPage;
+export default Login;
