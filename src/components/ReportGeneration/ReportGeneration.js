@@ -1,14 +1,15 @@
 import React from "react";
 import { Button, Box } from "@mui/material";
 import axios from "axios";
-import BASE_URL from "../assets/index";
+import { BASE_URL } from "../../assets/index";
+import { Container, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
+import classes from "./ReportGeneration.module.css";
 
-const ReportGeneration = ({
-  isPremiumUser,
-  userInfo,
-  getAllDownloads,
-  expenses,
-}) => {
+const ReportGeneration = ({ isPremiumUser, userInfo }) => {
+  const expense = useSelector((state) => state.expense);
+  const { btn } = classes;
+
   const storeToDB = async (reportUrl) => {
     const downloadRecord = {
       userId: userInfo.id,
@@ -19,10 +20,6 @@ const ReportGeneration = ({
         `${BASE_URL}/api/v1/download`,
         downloadRecord
       );
-      const data = await response.data;
-      if (data) {
-        getAllDownloads();
-      }
     } catch (err) {
       console.error(err);
     }
@@ -45,16 +42,27 @@ const ReportGeneration = ({
   };
 
   return (
-    <Box>
+    <Container
+      maxWidth="xs"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+      }}
+    >
+      <Typography variant="h4" align="center" gutterBottom>
+        Report Generation
+      </Typography>
       <Button
         variant="contained"
         color="secondary"
         onClick={handleDownload}
-        disabled={!isPremiumUser || expenses?.length === 0}
+        disabled={!isPremiumUser || expense?.expenses?.length === 0}
+        className={btn}
       >
         Download Expenses
       </Button>
-    </Box>
+    </Container>
   );
 };
 

@@ -2,15 +2,11 @@ import React, { useState } from "react";
 import { Button, Container } from "@mui/material";
 import axios from "axios";
 import Cookies from "js-cookie";
-import BASE_URL from "../assets/index";
-
-const PaymentRequest = ({
-  setUserInfo,
-  setIsLeaderBoardShown,
-  isLeaderBoardShown,
-}) => {
-  const userInfo = JSON.parse(Cookies.get("userInfo"));
-  const [isPremiumUser, setIsPremiumUser] = useState(userInfo.isPremiumUser);
+import { BASE_URL } from "../../assets/index";
+import { useNavigate } from "react-router-dom";
+const PaymentRequest = ({ userInfo }) => {
+  const [isPremiumUser, setIsPremiumUser] = useState(userInfo?.isPremiumUser);
+  const navigate = useNavigate();
 
   const handlePaymentRequest = async () => {
     try {
@@ -39,10 +35,10 @@ const PaymentRequest = ({
               { isPremiumUser: true }
             );
             const { body } = await response.data;
-
-            setUserInfo(body);
             setIsPremiumUser(true);
             Cookies.set("userInfo", JSON.stringify(body));
+            navigate("/expense-list");
+            window.location.reload(true);
           } catch (error) {
             console.error("Error:", error);
           }
@@ -58,34 +54,15 @@ const PaymentRequest = ({
     }
   };
 
-  const showLeaderBoard = () => {
-    setIsLeaderBoardShown(!isLeaderBoardShown);
-  };
-
   return (
-    <Container
-      style={{ display: "flex", justifyContent: "space-around", width: "25em" }}
+    <div
+      variant="contained"
+      color="secondary"
+      onClick={handlePaymentRequest}
+      disabled={!isPremiumUser ? false : true}
     >
-      {!isPremiumUser ? (
-        <Button
-          variant="contained"
-          color="secondary"
-          onClick={handlePaymentRequest}
-          disabled={!isPremiumUser ? false : true}
-        >
-          {!isPremiumUser ? "Buy Premium" : "Pro User"}
-        </Button>
-      ) : (
-        <></>
-      )}
-      {!isPremiumUser ? (
-        <></>
-      ) : (
-        <Button variant="contained" color="secondary" onClick={showLeaderBoard}>
-          {isLeaderBoardShown ? "Show Expenses" : "Show Leader Board"}
-        </Button>
-      )}
-    </Container>
+      {!isPremiumUser ? "Buy Premium" : "Pro User"}
+    </div>
   );
 };
 

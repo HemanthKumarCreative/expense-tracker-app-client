@@ -3,7 +3,7 @@ import { TextField, Button, Container, Typography } from "@mui/material";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import BASE_URL from "../assets/index";
+import { BASE_URL } from "../../assets/index";
 
 const ResetPasswordForm = () => {
   const { search } = useLocation();
@@ -57,6 +57,7 @@ const ResetPasswordForm = () => {
           name="newPassword"
           value={formData.newPassword}
           onChange={handleChange}
+          color="success"
         />
         <TextField
           fullWidth
@@ -67,8 +68,9 @@ const ResetPasswordForm = () => {
           name="confirmPassword"
           value={formData.confirmPassword}
           onChange={handleChange}
+          color="success"
         />
-        <Button variant="contained" color="primary" type="submit" fullWidth>
+        <Button variant="contained" type="submit" fullWidth color="success">
           Reset Password
         </Button>
       </form>

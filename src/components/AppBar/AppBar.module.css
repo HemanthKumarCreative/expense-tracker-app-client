@@ -1,0 +1,112 @@
+.appBar {
+  background-color: #05c185 !important;
+  box-shadow: 0px 0px 0px 0px !important;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: static;
+  padding: 0 1rem;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 95vw;
+}
+
+.brand {
+  color: #ffffff !important;
+  font-style: italic !important;
+  font-weight: 600 !important;
+}
+
+.logOutBtn {
+  background-color: #f21313;
+  color: white;
+  border: none;
+  padding: 5px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.brandContainer {
+  width: 15rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: self-start;
+  color: white;
+}
+
+.premiumContainer {
+  width: 20rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.imgContainer {
+  width: 50%;
+  height: 50%;
+}
+
+.img {
+  width: 50px;
+  height: 25px;
+  border: 1.5px solid white;
+  border-radius: 0.5rem;
+}
+
+.buttonContainer {
+  color: rgb(5, 193, 133);
+  background-color: white;
+  border: none;
+  padding: 5px 8px;
+  border-radius: 5px;
+}
+
+.btn {
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: sans-serif;
+  cursor: pointer;
+  padding: 12px;
+  min-width: 100px;
+  border: 0px;
+  -webkit-transition: background-color 100ms linear;
+  -ms-transition: background-color 100ms linear;
+  transition: background-color 100ms linear;
+  border-radius: 20px;
+  background: #2ecc71;
+  color: #ffffff;
+}
+
+.btn:focus,
+.btn.focus {
+  outline: 0;
+}
+
+.btn:hover {
+  background: #27ae60;
+  color: #ffffff;
+}
+
+.profile {
+  display: flex;
+  width: 12rem;
+  height: 80%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media only screen and (min-width: 887px) {
+  .profile {
+    display: none;
+  }
+}
+
+.white {
+  color: white;
+}
