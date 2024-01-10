@@ -28,8 +28,8 @@ const ReportGeneration = ({
         `${BASE_URL}/api/v1/download`,
         downloadRecord
       );
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      throw new Error(error);
     }
   };
 
@@ -48,7 +48,6 @@ const ReportGeneration = ({
       }
       // Open the URL in a new tab
     } catch (error) {
-      console.error("Error:", error);
       notifyError(error.message);
     }
   };

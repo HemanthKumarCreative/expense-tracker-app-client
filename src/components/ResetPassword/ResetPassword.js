@@ -42,7 +42,7 @@ const ResetPasswordForm = () => {
       });
       navigate("/");
     } catch (error) {
-      console.error("Error:", error);
+      throw new Error(error);
     }
   };
 

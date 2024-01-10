@@ -40,7 +40,7 @@ const PaymentRequest = ({ userInfo }) => {
             navigate("/expense-list");
             window.location.reload(true);
           } catch (error) {
-            console.error("Error:", error);
+            throw new Error(error);
           }
 
           alert("Payment successful");
@@ -50,7 +50,7 @@ const PaymentRequest = ({ userInfo }) => {
       const rzp1 = new window.Razorpay(options);
       await rzp1.open();
     } catch (error) {
-      console.error("Error:", error);
+      throw new Error(error);
     }
   };
 

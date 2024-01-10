@@ -18,7 +18,6 @@ import CustomLoader from "../Loader/Loader";
 const ExpenseList = ({ userInfo }) => {
   const dispatch = useDispatch();
   const expense = useSelector((state) => state.expense);
-  console.log({ expense });
   const { expenses, error, loading } = expense;
   const { scroller, heading, rightAlign } = classes;
 

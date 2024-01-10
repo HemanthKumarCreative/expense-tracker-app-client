@@ -44,13 +44,11 @@ export default function Login({ notifyError }) {
       setMessage(response.data.message);
       setLoading(false);
     } catch (error) {
-      console.error("Error:", error);
       notifyError(error.message);
       setMessage("User Not found, please try entering correct email");
       setLoading(false);
     }
   };
-  console.log({ message });
   return (
     <React.Fragment>
       <Container maxWidth="sm">

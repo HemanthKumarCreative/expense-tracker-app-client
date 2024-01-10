@@ -52,12 +52,10 @@ export default function Login({ notifyError }) {
         const errorData = await response.data;
         notifyError(errorData?.message);
         setLoading(false);
-        console.error("Error:", errorData.message);
       }
     } catch (error) {
       notifyError(error?.message);
       setLoading(false);
-      console.error("Error:", error);
     }
   };
 

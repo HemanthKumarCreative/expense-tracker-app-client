@@ -53,12 +53,10 @@ export default function Signup({ notifyError }) {
         const errorData = await response.data;
         setLoading(false);
         notifyError(errorData.message);
-        console.error("Error:", errorData.message);
       }
     } catch (error) {
       setLoading(false);
       notifyError(error.message);
-      console.error("Error:", error);
     }
   };
 

@@ -35,7 +35,7 @@ const ExpenseForm = ({
       const totalExpense = await response.data.body.totalExpenses;
       return totalExpense;
     } catch (error) {
-      console.error(error);
+      throw new Error(error);
     }
   };
 
@@ -47,7 +47,7 @@ const ExpenseForm = ({
         { totalExpenses: parseInt(totalExpense) + parseInt(expense) }
       );
     } catch (error) {
-      console.error(error);
+      throw new Error(error);
     }
   };
 
@@ -68,7 +68,6 @@ const ExpenseForm = ({
       } else {
         const errorData = await response.data;
         await notifyError(errorData?.message);
-        console.error("Error:", errorData.message);
       }
       setFormData({
         amount: "",
@@ -77,7 +76,6 @@ const ExpenseForm = ({
       });
     } catch (error) {
       await notifyError(error?.message);
-      console.error("Error:", error);
     }
   };
 

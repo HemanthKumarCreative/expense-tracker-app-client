@@ -41,7 +41,6 @@ export default function ButtonAppBar({
     navigate("/");
   };
 
-  console.log({ isPremiumUser, isUserLoggedIn });
   return (
     <Box position="static" className={classes.appBar}>
       <div className={classes.container}>
