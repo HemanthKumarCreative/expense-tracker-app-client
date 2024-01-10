@@ -23,6 +23,7 @@ export default function Signup() {
     name: "",
     email: "",
     password: "",
+    totalExpenses: 0,
   });
 
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ export default function Signup() {
         Cookies.set("userInfo", JSON.stringify(data.body.user));
         Cookies.set("token", data.body.token);
         navigate("/Home");
-        // window.location.reload(true);
+        window.location.reload(true);
       } else {
         const errorData = await response.data;
         console.error("Error:", errorData.message);
