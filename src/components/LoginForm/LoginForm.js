@@ -6,8 +6,9 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../../assets/index";
+import CustomLoader from "../Loader/Loader";
 
-export default function Login() {
+export default function Login({ notifyError }) {
   const {
     container,
     loginHead,
@@ -24,6 +25,7 @@ export default function Login() {
     password: "",
   });
 
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -33,7 +35,7 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
       const response = await axios.post(`${BASE_URL}/api/v1/user/login`, {
         ...formData,
@@ -41,16 +43,20 @@ export default function Login() {
 
       if (response.status === 201 || response.status === 200) {
         const data = await response.data.body;
-
+        setLoading(false);
         Cookies.set("userInfo", JSON.stringify(data.user));
         Cookies.set("token", data.token);
         navigate("/home");
         window.location.reload(true);
       } else {
         const errorData = await response.data;
+        notifyError(errorData?.message);
+        setLoading(false);
         console.error("Error:", errorData.message);
       }
     } catch (error) {
+      notifyError(error?.message);
+      setLoading(false);
       console.error("Error:", error);
     }
   };
@@ -61,31 +67,40 @@ export default function Login() {
         <Box sx={{ height: "80vh" }}>
           <Box className={container}>
             <h2 className={loginHead}>Login</h2>
-            <form onSubmit={handleSubmit} className={formContainer}>
-              <div>Email</div>
-              <input
-                className={inputBox}
-                type="email"
-                value={formData.email}
-                name="email"
-                onChange={handleChange}
-                placeholder="Enter the email"
-              />
-              <div>Password</div>
-              <input
-                className={inputBox}
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                placeholder="Enter the password"
-              />
-              <div>
-                <button className={btn} type="submit">
-                  Login
-                </button>
-              </div>
-            </form>
+            {loading && <CustomLoader />}
+            {!loading && (
+              <form onSubmit={handleSubmit} className={formContainer}>
+                <div>Email</div>
+                <input
+                  className={inputBox}
+                  type="email"
+                  value={formData.email}
+                  name="email"
+                  onChange={handleChange}
+                  placeholder="Enter the email"
+                />
+                <div>Password</div>
+                <input
+                  className={inputBox}
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="Enter the password"
+                />
+                <div>
+                  <button
+                    className={btn}
+                    type="submit"
+                    disabled={
+                      formData?.email === "" || formData.password === ""
+                    }
+                  >
+                    Login
+                  </button>
+                </div>
+              </form>
+            )}
             <div className={accAction}>
               <a onClick={() => navigate("/forget-password")} className={link}>
                 Forgot Password?
