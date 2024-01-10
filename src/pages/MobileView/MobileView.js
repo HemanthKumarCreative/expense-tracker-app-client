@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AppBar from "../../components/AppBar/AppBar";
 import Cookies from "js-cookie";
 import ExpenseForm from "../../components/ExpenseForm/ExpenseForm";
@@ -22,6 +22,7 @@ function MobileView({ notifyError, notifySuccess }) {
   const dispatch = useDispatch();
   const expense = useSelector((state) => state.expense);
   const report = useSelector((state) => state.report);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     dispatch(fetchAllReports(userInfo?.id));
@@ -55,6 +56,8 @@ function MobileView({ notifyError, notifySuccess }) {
             userInfo={userInfo}
             notifyError={notifyError}
             notifySuccess={notifySuccess}
+            setLoading={setLoading}
+            loading={loading}
           />
         </Grid>
         <Grid item xs={12} md={12}>
@@ -71,6 +74,8 @@ function MobileView({ notifyError, notifySuccess }) {
                 isPremiumUser={userInfo?.isPremiumUser}
                 notifyError={notifyError}
                 notifySuccess={notifySuccess}
+                setLoading={setLoading}
+                loading={loading}
               />
             </Grid>
             <Grid item xs={12} md={12}>

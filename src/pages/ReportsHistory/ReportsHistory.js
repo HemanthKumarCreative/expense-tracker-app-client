@@ -56,6 +56,7 @@ export default function ReportsHistoryPage({ userInfo }) {
             userInfo={userInfo}
             notifyError={notifyError}
             notifySuccess={notifySuccess}
+            loading={report?.loading}
           />
         </Grid>
       </Grid>

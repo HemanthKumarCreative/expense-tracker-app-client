@@ -16,6 +16,7 @@ export default function HomePage({ userInfo }) {
   const mobileScreen = useMediaQuery(theme.breakpoints.down("md"));
   const notifySuccess = (message) => toast.success(message);
   const notifyError = (message) => toast.error(message);
+  const [loading, setLoading] = React.useState(false);
 
   return !mobileScreen ? (
     <Box sx={{ flexGrow: 1 }}>
@@ -47,6 +48,8 @@ export default function HomePage({ userInfo }) {
             userInfo={userInfo}
             notifySuccess={notifySuccess}
             notifyError={notifyError}
+            setLoading={setLoading}
+            loading={loading}
           />
         </Grid>
       </Grid>

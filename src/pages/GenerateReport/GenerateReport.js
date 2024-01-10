@@ -16,6 +16,7 @@ export default function GenerateReport({ userInfo }) {
   const mobileScreen = useMediaQuery(theme.breakpoints.down("md"));
   const notifySuccess = (message) => toast.success(message);
   const notifyError = (message) => toast.error(message);
+  const [loading, setLoading] = React.useState(false);
 
   return !mobileScreen ? (
     <Box sx={{ flexGrow: 1 }}>
@@ -48,11 +49,18 @@ export default function GenerateReport({ userInfo }) {
             isPremiumUser={userInfo?.isPremiumUser}
             notifyError={notifyError}
             notifySuccess={notifySuccess}
+            setLoading={setLoading}
+            loading={loading}
           />
         </Grid>
       </Grid>
     </Box>
   ) : (
-    <MobileView notifyError={notifyError} notifySuccess={notifySuccess} />
+    <MobileView
+      notifyError={notifyError}
+      notifySuccess={notifySuccess}
+      loading={loading}
+      setLoading={setLoading}
+    />
   );
 }

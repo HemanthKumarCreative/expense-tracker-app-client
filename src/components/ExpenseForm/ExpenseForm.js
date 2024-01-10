@@ -4,8 +4,15 @@ import axios from "axios";
 import { BASE_URL } from "../../assets/index";
 import classes from "./ExpenseForm.module.css";
 import { useNavigate } from "react-router-dom";
+import CustomLoader from "../Loader/Loader";
 
-const ExpenseForm = ({ userInfo, notifySuccess, notifyError }) => {
+const ExpenseForm = ({
+  userInfo,
+  notifySuccess,
+  notifyError,
+  setLoading,
+  loading,
+}) => {
   const { btn } = classes;
   const navigate = useNavigate();
 
@@ -48,7 +55,7 @@ const ExpenseForm = ({ userInfo, notifySuccess, notifyError }) => {
     e.preventDefault();
     const userId = userInfo.id;
     formData.userId = userId;
-
+    setLoading(true);
     try {
       const response = await axios.post(`${BASE_URL}/api/v1/expense`, {
         ...formData,
@@ -57,6 +64,7 @@ const ExpenseForm = ({ userInfo, notifySuccess, notifyError }) => {
       if (response.status === 201 || response.status === 200) {
         await updateTotalExpense(response.data.body.amount);
         await notifySuccess("Expense Added Successfully");
+        setLoading(false);
       } else {
         const errorData = await response.data;
         await notifyError(errorData?.message);
@@ -78,73 +86,75 @@ const ExpenseForm = ({ userInfo, notifySuccess, notifyError }) => {
       <Typography variant="h4" align="center" gutterBottom>
         Add Expense
       </Typography>
-
-      <form onSubmit={handleSubmit}>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Amount Spent"
-              type="number"
-              name="amount"
-              value={formData.amount}
-              onChange={handleChange}
-              variant="outlined"
-              color="success"
-            />
+      {loading && <CustomLoader />}
+      {!loading && (
+        <form onSubmit={handleSubmit}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Amount Spent"
+                type="number"
+                name="amount"
+                value={formData.amount}
+                onChange={handleChange}
+                variant="outlined"
+                color="success"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Description"
+                type="text"
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                variant="outlined"
+                color="success"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Category"
+                select
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+                variant="outlined"
+                SelectProps={{
+                  native: true,
+                  color: "success",
+                }}
+                color="success"
+              >
+                <option value="Food" color="success">
+                  Food
+                </option>
+                <option value="Petrol" color="success">
+                  Petrol
+                </option>
+                <option value="Salary" color="success">
+                  Salary
+                </option>
+              </TextField>
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                className={btn}
+                variant="contained"
+                color="primary"
+                type="submit"
+                fullWidth
+                disabled={!(formData.amount && formData.description)}
+              >
+                Add Expense
+              </Button>
+            </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Description"
-              type="text"
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              variant="outlined"
-              color="success"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Category"
-              select
-              name="category"
-              value={formData.category}
-              onChange={handleChange}
-              variant="outlined"
-              SelectProps={{
-                native: true,
-                color: "success",
-              }}
-              color="success"
-            >
-              <option value="Food" color="success">
-                Food
-              </option>
-              <option value="Petrol" color="success">
-                Petrol
-              </option>
-              <option value="Salary" color="success">
-                Salary
-              </option>
-            </TextField>
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              className={btn}
-              variant="contained"
-              color="primary"
-              type="submit"
-              fullWidth
-              disabled={!(formData.amount && formData.description)}
-            >
-              Add Expense
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
+        </form>
+      )}
     </Container>
   );
 };
