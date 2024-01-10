@@ -13,7 +13,6 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { fetchUsers } from "../../redux/user/userSlice";
 
 function MobileView({ notifyError, notifySuccess }) {
   let userInfo = {};
@@ -23,20 +22,15 @@ function MobileView({ notifyError, notifySuccess }) {
   const dispatch = useDispatch();
   const expense = useSelector((state) => state.expense);
   const report = useSelector((state) => state.report);
-  const user = useSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     dispatch(fetchAllReports(userInfo?.id));
-  }, [report?.reports]);
+  }, []);
 
   useEffect(() => {
     dispatch(fetchExpenses(userInfo?.id));
-  }, [expense?.expenses]);
-
-  useEffect(() => {
-    dispatch(fetchUsers());
-  }, [user?.users]);
+  }, []);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
