@@ -8,10 +8,15 @@ import Cookies from "js-cookie";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MobileView from "../MobileView/MobileView";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function HomePage({ userInfo }) {
   const theme = useTheme();
   const mobileScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const notifySuccess = (message) => toast.success(message);
+  const notifyError = (message) => toast.error(message);
+
   return !mobileScreen ? (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
@@ -21,6 +26,15 @@ export default function HomePage({ userInfo }) {
             isPremiumUser={userInfo?.isPremiumUser}
             userInfo={userInfo}
           />
+          <div
+            style={{
+              width: "10rem",
+              position: "absolute",
+              right: 0,
+            }}
+          >
+            <ToastContainer />
+          </div>
         </Grid>
         <Grid item xs={12} md={2}>
           <SideBar
@@ -29,11 +43,15 @@ export default function HomePage({ userInfo }) {
           />
         </Grid>
         <Grid item xs={12} md={12}>
-          <ExpenseForm userInfo={userInfo} />
+          <ExpenseForm
+            userInfo={userInfo}
+            notifySuccess={notifySuccess}
+            notifyError={notifyError}
+          />
         </Grid>
       </Grid>
     </Box>
   ) : (
-    <MobileView />
+    <MobileView notifyError={notifyError} notifySuccess={notifySuccess} />
   );
 }

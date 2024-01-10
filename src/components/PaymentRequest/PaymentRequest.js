@@ -18,7 +18,7 @@ const PaymentRequest = ({ userInfo }) => {
         key: "rzp_test_KWXeQRtZiHyU85",
         amount: order.amount,
         currency: order.currency,
-        name: "Test Company",
+        name: "Avisi Software",
         description: "Payment for Services",
         order_id: order.order_id,
         handler: async function (order) {

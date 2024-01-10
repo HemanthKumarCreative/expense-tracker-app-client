@@ -11,8 +11,10 @@ import ReportHistoryTable from "../../components/ReportsDownloads/ReportsDownloa
 import { fetchAllReports } from "../../redux/report/reportSlice";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-function MobileView() {
+function MobileView({ notifyError, notifySuccess }) {
   let userInfo = {};
   if (Cookies.get("userInfo")) {
     userInfo = JSON.parse(Cookies.get("userInfo"));
@@ -38,9 +40,22 @@ function MobileView() {
             isPremiumUser={userInfo?.isPremiumUser}
             userInfo={userInfo}
           />
+          <div
+            style={{
+              width: "6rem",
+              position: "absolute",
+              right: 0,
+            }}
+          >
+            <ToastContainer />
+          </div>
         </Grid>
         <Grid item xs={12} md={12}>
-          <ExpenseForm userInfo={userInfo} />
+          <ExpenseForm
+            userInfo={userInfo}
+            notifyError={notifyError}
+            notifySuccess={notifySuccess}
+          />
         </Grid>
         <Grid item xs={12} md={12}>
           <ExpenseList expenses={expense?.expenses} />
@@ -54,6 +69,8 @@ function MobileView() {
               <ReportGeneration
                 userInfo={userInfo}
                 isPremiumUser={userInfo?.isPremiumUser}
+                notifyError={notifyError}
+                notifySuccess={notifySuccess}
               />
             </Grid>
             <Grid item xs={12} md={12}>

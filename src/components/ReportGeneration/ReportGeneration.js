@@ -6,7 +6,12 @@ import { Container, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import classes from "./ReportGeneration.module.css";
 
-const ReportGeneration = ({ isPremiumUser, userInfo }) => {
+const ReportGeneration = ({
+  isPremiumUser,
+  userInfo,
+  notifyError,
+  notifySuccess,
+}) => {
   const expense = useSelector((state) => state.expense);
   const { btn } = classes;
 
@@ -33,11 +38,13 @@ const ReportGeneration = ({ isPremiumUser, userInfo }) => {
       const reportUrl = data?.report_url;
       if (reportUrl !== undefined) {
         await storeToDB(reportUrl);
+        notifySuccess("Expense Report Generated Succesfully");
         window.open(reportUrl, "_blank");
       }
       // Open the URL in a new tab
     } catch (error) {
       console.error("Error:", error);
+      notifyError(error.message);
     }
   };
 

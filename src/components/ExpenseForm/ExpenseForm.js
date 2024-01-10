@@ -5,7 +5,7 @@ import { BASE_URL } from "../../assets/index";
 import classes from "./ExpenseForm.module.css";
 import { useNavigate } from "react-router-dom";
 
-const ExpenseForm = ({ userInfo }) => {
+const ExpenseForm = ({ userInfo, notifySuccess, notifyError }) => {
   const { btn } = classes;
   const navigate = useNavigate();
 
@@ -56,9 +56,10 @@ const ExpenseForm = ({ userInfo }) => {
 
       if (response.status === 201 || response.status === 200) {
         await updateTotalExpense(response.data.body.amount);
-        navigate("/expense-list");
+        await notifySuccess("Expense Added Successfully");
       } else {
         const errorData = await response.data;
+        await notifyError(errorData?.message);
         console.error("Error:", errorData.message);
       }
       setFormData({
@@ -67,6 +68,7 @@ const ExpenseForm = ({ userInfo }) => {
         category: "Food",
       });
     } catch (error) {
+      await notifyError(error?.message);
       console.error("Error:", error);
     }
   };
@@ -76,6 +78,7 @@ const ExpenseForm = ({ userInfo }) => {
       <Typography variant="h4" align="center" gutterBottom>
         Add Expense
       </Typography>
+
       <form onSubmit={handleSubmit}>
         <Grid container spacing={2}>
           <Grid item xs={12}>

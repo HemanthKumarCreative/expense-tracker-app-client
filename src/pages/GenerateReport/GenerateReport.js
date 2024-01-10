@@ -8,10 +8,14 @@ import Cookies from "js-cookie";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MobileView from "../MobileView/MobileView";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function GenerateReport({ userInfo }) {
   const theme = useTheme();
   const mobileScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const notifySuccess = (message) => toast.success(message);
+  const notifyError = (message) => toast.error(message);
 
   return !mobileScreen ? (
     <Box sx={{ flexGrow: 1 }}>
@@ -22,6 +26,15 @@ export default function GenerateReport({ userInfo }) {
             isPremiumUser={userInfo?.isPremiumUser}
             userInfo={userInfo}
           />
+          <div
+            style={{
+              width: "10rem",
+              position: "absolute",
+              right: 0,
+            }}
+          >
+            <ToastContainer />
+          </div>
         </Grid>
         <Grid item xs={12} md={2}>
           <SideBar
@@ -33,11 +46,13 @@ export default function GenerateReport({ userInfo }) {
           <ReportGeneration
             userInfo={userInfo}
             isPremiumUser={userInfo?.isPremiumUser}
+            notifyError={notifyError}
+            notifySuccess={notifySuccess}
           />
         </Grid>
       </Grid>
     </Box>
   ) : (
-    <MobileView />
+    <MobileView notifyError={notifyError} notifySuccess={notifySuccess} />
   );
 }
