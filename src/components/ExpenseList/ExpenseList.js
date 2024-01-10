@@ -42,7 +42,7 @@ const ExpenseList = ({ userInfo }) => {
             <TableHead>
               <TableRow>
                 <TableCell className={heading}>Date</TableCell>
-                <TableCell className={heading}>{"Amount ( $ )"}</TableCell>
+                <TableCell className={heading}>{"Amount"}</TableCell>
                 <TableCell className={heading}>Description</TableCell>
                 <TableCell className={`${heading} ${rightAlign}`}>
                   Category
@@ -53,7 +53,7 @@ const ExpenseList = ({ userInfo }) => {
               {expenses?.map((expense) => (
                 <TableRow key={expense.id}>
                   <TableCell>{expense.date}</TableCell>
-                  <TableCell>{expense.amount}</TableCell>
+                  <TableCell>{`$ ${expense.amount}`}</TableCell>
                   <TableCell>{expense.description}</TableCell>
                   <TableCell className={rightAlign}>
                     {expense.category}
