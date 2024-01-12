@@ -8,7 +8,7 @@ import axios from "axios";
 import { BASE_URL } from "../../assets/index";
 import CustomLoader from "../Loader/Loader";
 
-export default function Login({ notifyError }) {
+export default function Login({ notifyError, notifySuccess }) {
   const {
     container,
     loginHead,
@@ -40,9 +40,10 @@ export default function Login({ notifyError }) {
           email,
         }
       );
-      navigate("/");
       setMessage(response.data.message);
       setLoading(false);
+      notifySuccess("Please check your email to reset password");
+      setEmail("");
     } catch (error) {
       notifyError(error.message);
       setMessage("User Not found, please try entering correct email");

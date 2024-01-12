@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
   const notifyError = (message) => toast.error(message);
+  const notifySuccess = (message) => toast.success(message);
 
   return (
     <Fragment>
@@ -19,7 +20,10 @@ function Login() {
       >
         <ToastContainer />
       </div>
-      <ForgotPasswordForm notifyError={notifyError} />
+      <ForgotPasswordForm
+        notifyError={notifyError}
+        notifySuccess={notifySuccess}
+      />
     </Fragment>
   );
 }
