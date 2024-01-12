@@ -12,6 +12,7 @@ const ExpenseForm = ({
   notifyError,
   setLoading,
   loading,
+  isMobile,
 }) => {
   const { btn } = classes;
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const ExpenseForm = ({
   const getTotalExpense = async () => {
     try {
       const response = await axios.get(
-        `${BASE_URL}/api/v1/user/${userInfo.id}`
+        `${BASE_URL}/api/v1/user/${userInfo?.id}`
       );
       const totalExpense = await response.data.body.totalExpenses;
       return totalExpense;
@@ -65,6 +66,8 @@ const ExpenseForm = ({
         await updateTotalExpense(response.data.body.amount);
         await notifySuccess("Expense Added Successfully");
         setLoading(false);
+        isMobile && navigate("/expense-list");
+        isMobile && navigate("/leader-board");
       } else {
         const errorData = await response.data;
         await notifyError(errorData?.message);

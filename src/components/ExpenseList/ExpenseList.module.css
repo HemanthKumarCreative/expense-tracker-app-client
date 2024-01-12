@@ -1,5 +1,5 @@
 .scroller {
-  height: 80vh !important;
+  height: max-content !important;
   overflow-y: scroll !important;
 }
 

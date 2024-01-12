@@ -6,6 +6,7 @@ import { Container, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import classes from "./ReportGeneration.module.css";
 import CustomLoader from "../Loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 const ReportGeneration = ({
   isPremiumUser,
@@ -14,9 +15,11 @@ const ReportGeneration = ({
   notifySuccess,
   setLoading,
   loading,
+  isMobile,
 }) => {
   const expense = useSelector((state) => state.expense);
   const { btn } = classes;
+  const navigate = useNavigate();
 
   const storeToDB = async (reportUrl) => {
     const downloadRecord = {
@@ -45,6 +48,7 @@ const ReportGeneration = ({
         notifySuccess("Expense Report Generated Succesfully");
         window.open(reportUrl, "_blank");
         setLoading(false);
+        isMobile && navigate("/report-history");
       }
       // Open the URL in a new tab
     } catch (error) {

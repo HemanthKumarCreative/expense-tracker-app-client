@@ -14,7 +14,7 @@ import Grid from "@mui/material/Grid";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function MobileView({ notifyError, notifySuccess }) {
+function MobileView() {
   let userInfo = {};
   if (Cookies.get("userInfo")) {
     userInfo = JSON.parse(Cookies.get("userInfo"));
@@ -23,6 +23,9 @@ function MobileView({ notifyError, notifySuccess }) {
   const expense = useSelector((state) => state.expense);
   const report = useSelector((state) => state.report);
   const [loading, setLoading] = useState(false);
+
+  const notifySuccess = (message) => toast.success(message);
+  const notifyError = (message) => toast.error(message);
 
   useEffect(() => {
     dispatch(fetchAllReports(userInfo?.id));
@@ -58,10 +61,11 @@ function MobileView({ notifyError, notifySuccess }) {
             notifySuccess={notifySuccess}
             setLoading={setLoading}
             loading={loading}
+            isMobile={true}
           />
         </Grid>
         <Grid item xs={12} md={12}>
-          <ExpenseList expenses={expense?.expenses} />
+          <ExpenseList expenses={expense?.expenses} userInfo={userInfo} />
         </Grid>
         {userInfo?.isPremiumUser && (
           <>
@@ -76,6 +80,7 @@ function MobileView({ notifyError, notifySuccess }) {
                 notifySuccess={notifySuccess}
                 setLoading={setLoading}
                 loading={loading}
+                isMobile={true}
               />
             </Grid>
             <Grid item xs={12} md={12}>
