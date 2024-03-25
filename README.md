@@ -1,3 +1,61 @@
+# Expense Tracker Web Application
+
+This web application can be used with any browser on all screen resolutions. Can be used for tracking daily expenses with premium features such as Report Generation, Downloads history, Leaderboard.
+
+## Live Deployment link
+
+https://expense-tracker-app-client.vercel.app/
+
+## Project Explanation Video link
+
+https://youtu.be/IOBIC3xHuro
+
+## Integrations
+
+This projects uses following integrations
+
+### Razorpay payment gateway
+
+Razorpay payment gateway has been used for accepting the payment to premium upgrade.
+
+### AWS S3 Bucket
+
+AWS S3 bucket has been used for storing Expense Reports managing CRUD operations on Expense reports.
+
+### SIB mailing service
+
+SIB mailing service has been used for password reset emailing
+
+## Functionalities
+
+### Signup
+
+User can signup to the expense tracker
+
+### Login
+
+User can login to the expense tracker
+
+### Add Expense
+
+Users can add their day to day expenses with fields such as amount, description, category.
+
+### Expense List
+
+Users can see the expenses added by them in tabular view with columns such as date, time, amount, description, category.
+
+### Report Generation
+
+Premium users can generate the expense report and download it.
+
+### Report History
+
+Premium users can see their past expense report generation in tabular format with date, time, action button
+
+### Leaderboard
+
+Premium users can see the top spenders in the decresing order of total expenses
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
